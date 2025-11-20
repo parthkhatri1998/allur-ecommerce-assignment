@@ -1,0 +1,38 @@
+<?php
+/**
+ * Inventory badge output for category listings.
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Allure\QuickOrder\ViewModel\InventoryBadge $viewModel
+ */
+
+
+
+$product = $block->getProduct();
+$viewModel = $block->getData('viewModel');
+
+if (!$product || !$viewModel) {
+    return;
+}
+
+$label = $viewModel->getBadge($product);
+$class = strtolower(str_replace(' ', '-', $label));
+?>
+<style>
+    .allure-inventory-badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 12px;
+        color: #ffffff;
+        margin-top: 8px;
+    }
+    .allure-inventory-badge--in-stock { background: #2e7d32; }
+    .allure-inventory-badge--limited { background: #f9a825; color: #1f1f1f; }
+    .allure-inventory-badge--out-of-stock { background: #c62828; }
+</style>
+<div class="allure-inventory-badge allure-inventory-badge--<?= $escaper->escapeHtmlAttr($class) ?>">
+    <?= $escaper->escapeHtml($label) ?>
+</div>

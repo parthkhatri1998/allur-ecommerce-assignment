@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Allure\QuickOrder\Api\QuickOrderInterface" type="Allure\QuickOrder\Model\QuickOrderService"/>
+    <preference for="Allure\QuickOrder\Api\Data\QuickOrderItemInterface" type="Allure\QuickOrder\Model\Data\QuickOrderItem"/>
+    <preference for="Allure\QuickOrder\Api\Data\QuickOrderResultInterface" type="Allure\QuickOrder\Model\Data\QuickOrderResult"/>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="quickorderHistory" xsi:type="object">Allure\QuickOrder\Console\Command\OrderHistoryCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
